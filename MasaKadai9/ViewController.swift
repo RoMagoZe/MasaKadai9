@@ -13,7 +13,10 @@ class ViewController: UIViewController {
 
     @IBAction private func selectDone(segue: UIStoryboardSegue) {
 
-        let select = segue.identifier ?? ""
+        guard let select = segue.identifier else {
+            assertionFailure("segue.identifier is nil.")
+            return
+        }
 
         switch select {
         case "tokyo":
@@ -25,7 +28,7 @@ class ViewController: UIViewController {
         case "chiba":
             selectLabel.text = "千葉県"
         default:
-            break
+            assertionFailure("segue.identifier is invalid.")
         }
     }
 
